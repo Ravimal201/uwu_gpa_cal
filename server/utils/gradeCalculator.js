@@ -1,37 +1,39 @@
 function calculateGrade(mark){
 
-    if(mark>=95) 
+    if(mark>=85) 
         return {grade:"A+",gpv:4.0};
 
-    if(mark>=85) 
+    if(mark>=70) 
         return {grade:"A",gpv:4.0};
 
-    if(mark>=80) 
+    if(mark>=65) 
         return {grade:"A-",gpv:3.7};
 
-    if(mark>=75) 
+    if(mark>=60) 
         return {grade:"B+",gpv:3.3};
 
-    if(mark>=70) 
+    if(mark>=55) 
         return {grade:"B",gpv:3.0};
 
-    if(mark>=65) 
+    if(mark>=50) 
         return {grade:"B-",gpv:2.7};
 
-    if(mark>=60) 
+    if(mark>=45) 
         return {grade:"C+",gpv:2.3};
 
-    if(mark>=55) 
+    if(mark>=40) 
         return {grade:"C",gpv:2.0};
 
-    if(mark>=50) 
+    if(mark>=35) 
         return {grade:"C-",gpv:1.7};
 
-    if(mark>=45) 
+    if(mark>=30) 
         return {grade:"D+",gpv:1.3};
 
-    if(mark>=40) return {grade:"D",gpv:1.0};
-        return {grade:"E",gpv:0};
+    if(mark>=25) 
+        return {grade:"D",gpv:1.0};
+
+    return {grade:"E",gpv:0};
 
 }
 
