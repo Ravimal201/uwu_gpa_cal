@@ -1,11 +1,14 @@
-const express=require("express");
+const express = require("express");
 
-const router=express.Router();
+const router = express.Router();
 
 
 const {
-    createStudent
-}=require("../controllers/studentController");
+    createStudent,
+    getStudents
+}
+=
+require("../controllers/studentController");
 
 
 
@@ -16,4 +19,11 @@ router.post(
 
 
 
-module.exports=router;
+router.get(
+    "/",
+    getStudents
+);
+
+
+
+module.exports = router;
