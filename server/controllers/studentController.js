@@ -1,80 +1,70 @@
 const Student = require("../models/Student");
-const calculateGrade = require("../utils/gradeCalculator");
 
 
+// Save student GPA data
 
 exports.createStudent = async(req,res)=>{
 
-try{
+    try{
+
+        const student = new Student({
+
+            studentName:req.body.studentName,
+
+            semester:req.body.semester,
+
+            subjects:req.body.subjects,
+
+            gpa:req.body.gpa
+
+        });
 
 
-const {
-    studentName,
-    semester,
-    subjects
-}=req.body;
+        const savedStudent =
+        await student.save();
 
 
-
-let totalCredits=0;
-let totalPoints=0;
+        res.status(201).json(savedStudent);
 
 
+    }
+    catch(error){
 
-subjects.forEach(subject=>{
+        res.status(500).json({
 
+            message:error.message
 
-    const result = calculateGrade(subject.marks);
+        });
 
+    }
 
-    subject.grade=result.grade;
-
-    subject.gpv=result.gpv;
-
-
-
-    totalCredits += subject.credits;
-
-
-    totalPoints += subject.credits * result.gpv;
-
-
-});
-
-
-
-const gpa = totalPoints / totalCredits;
+};
 
 
 
-const student = new Student({
 
-    studentName,
-    semester,
-    subjects,
-    gpa:gpa.toFixed(2)
+// Get all students
 
-});
+exports.getStudents = async(req,res)=>{
 
+    try{
 
-
-await student.save();
+        const students =
+        await Student.find();
 
 
-
-res.status(201).json(student);
-
+        res.json(students);
 
 
-}
+    }
+    catch(error){
 
-catch(error){
+        res.status(500).json({
 
-res.status(500).json({
-    message:error.message
-});
+            message:error.message
 
-}
+        });
 
+    }
 
 };

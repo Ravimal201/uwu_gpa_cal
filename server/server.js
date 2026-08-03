@@ -1,24 +1,14 @@
-require("dotenv").config();
-
-
 const express=require("express");
-
 const cors=require("cors");
-
+require("dotenv").config();
 
 const connectDB=require("./config/db");
 
 
-const studentRoutes=require("./routes/studentRoutes");
-
+const app=express();
 
 
 connectDB();
-
-
-
-const app=express();
-
 
 
 app.use(cors());
@@ -36,20 +26,18 @@ app.get("/",(req,res)=>{
 
 
 app.use(
-    "/api/students",
-    studentRoutes
+"/api/students",
+require("./routes/studentRoutes")
 );
 
 
 
-const PORT=process.env.PORT || 5000;
-
-
-
-app.listen(PORT,()=>{
+app.listen(
+process.env.PORT,
+()=>{
 
 console.log(
-`Server running on ${PORT}`
+`Server running on ${process.env.PORT}`
 );
 
 });
