@@ -25,16 +25,6 @@ function Dashboard() {
 
   const totalStudents = students.length;
 
-  const averageCGPA =
-    students.length > 0
-      ? (
-          students.reduce(
-            (sum, student) => sum + (student.overallCGPA || 0),
-            0,
-          ) / students.length
-        ).toFixed(2)
-      : "0.00";
-
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -51,20 +41,12 @@ function Dashboard() {
       <div className="max-w-7xl mx-auto p-8">
         {/* Statistics */}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl shadow p-6">
             <h3 className="text-gray-500 text-lg">Total Students</h3>
 
             <h1 className="text-4xl font-bold text-blue-700 mt-2">
               {totalStudents}
-            </h1>
-          </div>
-
-          <div className="bg-white rounded-xl shadow p-6">
-            <h3 className="text-gray-500 text-lg">Average CGPA</h3>
-
-            <h1 className="text-4xl font-bold text-green-600 mt-2">
-              {averageCGPA}
             </h1>
           </div>
 
@@ -82,7 +64,7 @@ function Dashboard() {
         <div className="mt-10">
           <h2 className="text-2xl font-bold mb-5">Quick Actions</h2>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 gap-5">
             <button
               onClick={() => navigate("/register")}
               className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl p-6 transition"
@@ -101,15 +83,6 @@ function Dashboard() {
               <p className="mt-2 text-green-100">
                 View all registered students
               </p>
-            </button>
-
-            <button
-              onClick={() => navigate("/grading")}
-              className="bg-purple-600 hover:bg-purple-700 text-white rounded-xl p-6 transition"
-            >
-              <h3 className="text-xl font-bold">Grading Scales</h3>
-
-              <p className="mt-2 text-purple-100">Manage grading systems</p>
             </button>
           </div>
         </div>
