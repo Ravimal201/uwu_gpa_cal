@@ -29,12 +29,10 @@ function Dashboard() {
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <div className="bg-blue-700 text-white px-8 py-6 shadow-md">
-        <h1 className="text-3xl font-bold">
-          Academic Record Management System
-        </h1>
+        <h1 className="text-3xl font-bold">University GPA Calculator</h1>
 
         <p className="mt-2 text-blue-100">
-          Manage Students, GPA, CGPA and Academic Records
+          You can manage your GPA through this System,
         </p>
       </div>
 
@@ -43,19 +41,23 @@ function Dashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl shadow p-6">
-            <h3 className="text-gray-500 text-lg">Total Students</h3>
-
             <h1 className="text-4xl font-bold text-blue-700 mt-2">
               {totalStudents}
             </h1>
+
+            <h3 className="text-gray-500 text-lg">
+              Students Are using this System
+            </h3>
           </div>
 
           <div className="bg-white rounded-xl shadow p-6">
-            <h3 className="text-gray-500 text-lg">Universities</h3>
-
             <h1 className="text-4xl font-bold text-purple-600 mt-2">
               {new Set(students.map((student) => student.university)).size}
             </h1>
+
+            <h3 className="text-gray-500 text-lg">
+              Universities repesenting with this System
+            </h3>
           </div>
         </div>
 
@@ -99,63 +101,6 @@ function Dashboard() {
             >
               View All
             </button>
-          </div>
-
-          <div className="bg-white rounded-xl shadow overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-gray-200">
-                <tr>
-                  <th className="text-left px-5 py-3">Student Name</th>
-
-                  <th className="text-left px-5 py-3">University</th>
-
-                  <th className="text-left px-5 py-3">Degree</th>
-
-                  <th className="text-left px-5 py-3">CGPA</th>
-
-                  <th className="text-center px-5 py-3">Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {loading ? (
-                  <tr>
-                    <td colSpan="5" className="text-center py-8">
-                      Loading...
-                    </td>
-                  </tr>
-                ) : students.length === 0 ? (
-                  <tr>
-                    <td colSpan="5" className="text-center py-8">
-                      No students found.
-                    </td>
-                  </tr>
-                ) : (
-                  students.slice(0, 5).map((student) => (
-                    <tr key={student._id} className="border-b hover:bg-gray-50">
-                      <td className="px-5 py-4">{student.studentName}</td>
-
-                      <td className="px-5 py-4">{student.university}</td>
-
-                      <td className="px-5 py-4">{student.degreeYears} Years</td>
-
-                      <td className="px-5 py-4">
-                        {student.overallCGPA || "0.00"}
-                      </td>
-
-                      <td className="text-center">
-                        <button
-                          onClick={() => navigate(`/student/${student._id}`)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
-                        >
-                          Open
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
